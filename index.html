@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mis quince años · Salomé</title>
+<meta name="description" content="Una invitación muy especial a los quince años de Salomé.">
+<style>
+:root{--ink:#252235;--paper:#f5ead4;--accent:#78618a}
+*{box-sizing:border-box} body{margin:0;min-height:100vh;background:radial-gradient(ellipse at top,#eee4ee,#d8d0dc 65%,#bcb1c4);color:var(--ink);font-family:Georgia,'Times New Roman',serif;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;}
+.header{text-align:center;margin:0 0 14px}.header .eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;opacity:.78}.header h1{font-weight:normal;font-size:clamp(1.2rem,4vw,1.8rem);margin:5px 0 0;font-style:italic}
+#book{margin:auto;box-shadow:0 18px 55px #30243b55}.page{background:#f5ead4;overflow:hidden;position:relative}.page img{width:100%;height:100%;object-fit:fill;display:block;user-select:none;-webkit-user-drag:none}
+.personalize{position:absolute;left:10%;width:80%;top:24.3%;height:12%;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:rgba(245,234,212,.97);padding:2px 4px;color:#242235}
+.guest-name{font-variant:small-caps;font-weight:600;font-size:clamp(12px,2.3vw,22px);line-height:1.15;overflow-wrap:anywhere;max-width:100%}
+.validity{font-variant:small-caps;font-weight:600;font-size:clamp(8px,1.4vw,14px);line-height:1.1;margin-top:8px}
+.controls{display:flex;align-items:center;gap:18px;margin-top:16px}.controls button{border:1px solid #6c5c77;background:#f7f0e5;color:#2b2436;border-radius:999px;padding:10px 17px;font:inherit;cursor:pointer;box-shadow:0 3px 10px #30243b22}.controls button:active{transform:translateY(1px)}#status{font-size:.9rem;min-width:82px;text-align:center}.hint{font-size:.75rem;opacity:.75;text-align:center;margin:10px 0 0;max-width:420px;line-height:1.4}
+@media(max-width:480px){body{padding:10px}.header{margin-bottom:8px}.controls{margin-top:10px;gap:12px}.controls button{padding:9px 13px}}
+</style>
+</head>
+<body>
+<header class="header"><div class="eyebrow">Una invitación muy especial</div><h1>Mis quince años · Salomé</h1></header>
+<div id="book">
+  <div class="page"><img src="assets/page-1.webp" alt="Portada: Salomé, mis quince años"></div>
+  <div class="page"><img src="assets/page-2.webp" alt="Ilustración de jardín y paisaje"></div>
+  <div class="page"><img src="assets/page-3.webp" alt="Mensaje de invitación"></div>
+  <div class="page"><img src="assets/page-4.webp" alt="Fecha, lugar y código de vestuario"></div>
+  <div class="page"><img src="assets/page-5.webp" alt="Confirmación y dedicatoria"><div class="personalize"><div id="guestName" class="guest-name">Nombre del invitado</div><div class="validity">Esta invitación es válida para una persona.</div></div></div>
+  <div class="page"><img src="assets/page-6.webp" alt="Ilustración final de Salomé"></div>
+</div>
+<div class="controls"><button id="prev" type="button" aria-label="Página anterior">‹ Anterior</button><span id="status">Página 1 de 6</span><button id="next" type="button" aria-label="Página siguiente">Siguiente ›</button></div>
+<p class="hint">Toca una esquina o usa los botones para pasar las páginas. Para personalizar el nombre, añade <b>?invitado=Nombre</b> al final del enlace.</p>
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+<script>
+(function(){
+ const params=new URLSearchParams(window.location.search);
+ const guest=(params.get('invitado')||'Nombre del invitado').replace(/[<>]/g,'').trim().slice(0,80);
+ document.getElementById('guestName').textContent=guest||'Nombre del invitado';
+ const el=document.getElementById('book');
+ const pageFlip=new St.PageFlip(el,{width:420,height:592,size:'stretch',minWidth:280,maxWidth:650,minHeight:395,maxHeight:920,showCover:true,drawShadow:true,flippingTime:800,usePortrait:true,startPage:0,autoSize:true,maxShadowOpacity:.25, mobileScrollSupport:false});
+ pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+ const status=document.getElementById('status');
+ function update(){const n=pageFlip.getCurrentPageIndex()+1;status.textContent='Página '+n+' de 6';document.getElementById('prev').disabled=n===1;document.getElementById('next').disabled=n===6;}
+ pageFlip.on('flip',update);document.getElementById('prev').addEventListener('click',()=>pageFlip.flipPrev());document.getElementById('next').addEventListener('click',()=>pageFlip.flipNext());update();
+})();
+</script>
+</body></html>

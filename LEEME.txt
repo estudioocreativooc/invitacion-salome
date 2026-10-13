@@ -1,0 +1,22 @@
+INVITACIÓN DIGITAL DE SALOMÉ — PROTOTIPO
+
+Este paquete contiene una web estática que usa las seis páginas del PDF original y una animación de volteo de páginas. En la quinta página, el nombre se toma de la URL y el texto de cupo se muestra como “Esta invitación es válida para una persona”.
+
+PRUEBA LOCAL
+1. Descomprime el ZIP.
+2. Para que funcione la animación, abre la carpeta desde un servidor web local o publícala en GitHub Pages. Abrir index.html directamente como archivo puede bloquear la carga de la biblioteca externa en algunos navegadores.
+
+PERSONALIZAR EL ENLACE
+Cuando esté publicada, añade al final del enlace:
+?invitado=María%20Fernanda
+
+Ejemplo:
+https://TU-USUARIO.github.io/TU-REPOSITORIO/?invitado=María%20Fernanda
+
+Cada invitado usa el mismo libro; solo cambia el nombre según el enlace. No hay que crear 60 páginas web distintas.
+
+IMPORTANTE
+- Este ZIP no está publicado en Internet todavía; contiene los archivos para hacerlo.
+- La animación carga PageFlip desde un CDN, así que requiere conexión a Internet.
+- Antes de enviar las 60 invitaciones, publica la web y pruébala en un celular y con varios nombres.
+- El PDF de origen tiene una página personalizada que decía “Natalia, hijo” y “dos personas”; el prototipo reemplaza esa zona por el nombre de la URL y el texto de una persona.
