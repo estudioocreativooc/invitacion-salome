@@ -120,28 +120,37 @@
     <button id="next" onclick="changePage(1)">Siguiente →</button>
   </div>
 
-  <script>
-    let currentPage = 0;
-    const pages = document.querySelectorAll('.page');
-    const counter = document.getElementById('counter');
-    const prev = document.getElementById('prev');
-    const next = document.getElementById('next');
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  let currentPage = 0;
+  const pages = document.querySelectorAll('.page');
+  const counter = document.getElementById('counter');
+  const prev = document.getElementById('prev');
+  const next = document.getElementById('next');
 
-    function changePage(direction) {
-      currentPage += direction;
+  function changePage(direction) {
+    currentPage = currentPage + direction;
 
-      pages.forEach((page, index) => {
-        page.classList.toggle('active', index === currentPage);
-      });
+    pages.forEach(function (page, index) {
+      page.classList.toggle('active', index === currentPage);
+    });
 
-      counter.textContent =
-        Página ${currentPage + 1} de ${pages.length};
+    counter.textContent = 'Página ' + (currentPage + 1) + ' de ' + pages.length;
+    prev.disabled = currentPage === 0;
+    next.disabled = currentPage === pages.length - 1;
+  }
 
-      prev.disabled = currentPage === 0;
-      next.disabled = currentPage === pages.length - 1;
-    }
+  prev.addEventListener('click', function () {
+    if (currentPage > 0) changePage(-1);
+  });
 
-    prev.disabled = true;
-  </script>
+  next.addEventListener('click', function () {
+    if (currentPage < pages.length - 1) changePage(1);
+  });
+
+  prev.disabled = true;
+  next.disabled = pages.length <= 1;
+});
+</script>
 </body>
 </html>
