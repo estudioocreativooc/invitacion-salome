@@ -12,76 +12,44 @@
   --paper: #f5ead4;
   --accent: #78618a;
 }
-
 * { box-sizing: border-box; }
-
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(ellipse at top, #f4edf6, #d8d0e0 65%, #aaa0b6);
+  background: radial-gradient(ellipse at top, #eee4ee, #d8d0dc 65%, #bcb1c4);
   color: var(--ink);
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: Georgia, 'Times New Roman', serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 16px 10px 20px;
-  overflow-x: hidden;
+  padding: 18px;
 }
-
 .header {
   text-align: center;
-  margin: 0 0 16px;
+  margin: 0 0 14px;
 }
-
 .header .eyebrow {
-  font-size: .7rem;
-  letter-spacing: .2em;
+  font-size: .72rem;
+  letter-spacing: .22em;
   text-transform: uppercase;
   opacity: .78;
 }
-
 .header h1 {
   font-weight: normal;
-  font-size: clamp(1.15rem, 4vw, 1.8rem);
-  margin: 6px 0 0;
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  margin: 5px 0 0;
   font-style: italic;
 }
-
-/* Marco y volumen exterior del libro */
-.book-shell {
-  width: min(100%, 840px);
-  margin: 0 auto;
-  padding: 7px;
-  border-radius: 4px;
-  background: linear-gradient(
-    110deg,
-    #4b405e,
-    #c5b8d0 4%,
-    #f4eadb 7%,
-    #b6a5c4 94%,
-    #4b405e
-  );
-  box-shadow:
-    0 24px 45px #30243b45,
-    0 8px 14px #30243b30,
-    inset 0 0 0 1px #ffffff80;
-}
-
 #book {
-  width: 100%;
-  margin: 0 auto;
-  background: #e8dcc8;
+  margin: auto;
+  box-shadow: 0 18px 55px #30243b55;
 }
-
 .page {
-  background: var(--paper);
+  background: #f5ead4;
   overflow: hidden;
   position: relative;
-  border: 1px solid #d5c4a9;
 }
-
 .page img {
   width: 100%;
   height: 100%;
@@ -89,278 +57,163 @@ body {
   display: block;
   user-select: none;
   -webkit-user-drag: none;
-  pointer-events: none;
 }
-
-/* Nombre y cupos sobre la página personalizada */
 .personalize {
   position: absolute;
   left: 10%;
   width: 80%;
   top: 24.3%;
-  min-height: 12%;
+  height: 12%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: rgba(245, 234, 212, .97);
-  padding: 4px;
+  background: rgba(245,234,212,.97);
+  padding: 2px 4px;
   color: #242235;
 }
-
 .guest-name {
   font-variant: small-caps;
   font-weight: 600;
-  font-size: clamp(10px, 2.3vw, 22px);
+  font-size: clamp(12px, 2.3vw, 22px);
   line-height: 1.15;
   overflow-wrap: anywhere;
   max-width: 100%;
 }
-
 .validity {
   font-variant: small-caps;
   font-weight: 600;
-  font-size: clamp(7px, 1.4vw, 14px);
-  line-height: 1.2;
-  margin-top: 5px;
+  font-size: clamp(8px, 1.4vw, 14px);
+  line-height: 1.1;
+  margin-top: 8px;
 }
-
 .controls {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 12px;
-  margin-top: 18px;
-  width: 100%;
+  gap: 18px;
+  margin-top: 16px;
 }
-
 .controls button {
   border: 1px solid #6c5c77;
   background: #f7f0e5;
   color: #2b2436;
   border-radius: 999px;
-  padding: 10px 15px;
+  padding: 10px 17px;
   font: inherit;
-  font-size: .9rem;
   cursor: pointer;
   box-shadow: 0 3px 10px #30243b22;
 }
-
-.controls button:active {
-  transform: translateY(1px);
-}
-
-.controls button:disabled {
-  opacity: .4;
-  cursor: default;
-}
-
+.controls button:active { transform: translateY(1px); }
 #status {
-  font-size: .8rem;
-  min-width: 90px;
+  font-size: .9rem;
+  min-width: 82px;
   text-align: center;
 }
-
 .hint {
   font-size: .75rem;
-  opacity: .78;
+  opacity: .75;
   text-align: center;
-  margin: 12px 0 0;
+  margin: 10px 0 0;
   max-width: 420px;
-  line-height: 1.5;
+  line-height: 1.4;
 }
-
-/* En el celular conservamos las dos páginas abiertas */
-@media (max-width: 600px) {
-  body {
-    padding: 12px 5px 18px;
-    justify-content: flex-start;
-  }
-
-  .header {
-    margin-bottom: 12px;
-  }
-
-  .book-shell {
-    padding: 4px;
-    border-radius: 3px;
-  }
-
-  .controls {
-    margin-top: 14px;
-    gap: 7px;
-  }
-
-  .controls button {
-    padding: 9px 10px;
-    font-size: .82rem;
-  }
-
-  #status {
-    min-width: 76px;
-    font-size: .72rem;
-  }
-
-  .hint {
-    padding: 0 10px;
-  }
+@media(max-width:480px) {
+  body { padding: 10px; }
+  .header { margin-bottom: 8px; }
+  .controls { margin-top: 10px; gap: 12px; }
+  .controls button { padding: 9px 13px; }
 }
 </style>
 </head>
 
 <body>
-
 <header class="header">
   <div class="eyebrow">Una invitación muy especial</div>
   <h1>Mis quince años · Salomé</h1>
 </header>
 
-<div class="book-shell">
-  <div id="book">
-    <div class="page">
-      <img src="page-1.webp" alt="Portada: Salomé, mis quince años">
-    </div>
-
-    <div class="page">
-      <img src="page-2.webp" alt="Ilustración de jardín y paisaje">
-    </div>
-
-    <div class="page">
-      <img src="page-3.webp" alt="Mensaje de invitación">
-    </div>
-
-    <div class="page">
-      <img src="page-4.webp" alt="Fecha, lugar y código de vestuario">
-    </div>
-
-    <div class="page">
-      <img src="page-5.webp" alt="Confirmación y dedicatoria">
-      <div class="personalize">
-        <div id="guestName" class="guest-name">
-          Nombre del invitado
-        </div>
-        <div id="validity" class="validity">
-          Esta invitación es válida para una persona.
-        </div>
-      </div>
-    </div>
-
-    <div class="page">
-      <img src="page-6.webp" alt="Ilustración final de Salomé">
+<div id="book">
+  <div class="page"><img src="page-1.webp" alt="Portada: Salomé, mis quince años"></div>
+  <div class="page"><img src="page-2.webp" alt="Ilustración de jardín y paisaje"></div>
+  <div class="page"><img src="page-3.webp" alt="Mensaje de invitación"></div>
+  <div class="page"><img src="page-4.webp" alt="Fecha, lugar y código de vestuario"></div>
+  <div class="page">
+    <img src="page-5.webp" alt="Confirmación y dedicatoria">
+    <div class="personalize">
+      <div id="guestName" class="guest-name">Nombre del invitado</div>
+      <div class="validity">Esta invitación es válida para una persona.</div>
     </div>
   </div>
+  <div class="page"><img src="page-6.webp" alt="Ilustración final de Salomé"></div>
 </div>
 
 <div class="controls">
   <button id="prev" type="button">‹ Anterior</button>
-  <span id="status">Portada</span>
+  <span id="status">Página 1 de 6</span>
   <button id="next" type="button">Siguiente ›</button>
 </div>
 
 <p class="hint">
-  Desliza las páginas o utiliza los botones para avanzar.
+  Toca una esquina o usa los botones para pasar las páginas.
+  Para personalizar el nombre, añade ?invitado=Nombre al final del enlace.
 </p>
 
 <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
-
 <script>
-(function () {
+(function() {
   const params = new URLSearchParams(window.location.search);
-
-  const guest = (params.get("invitado") || "Nombre del invitado")
-    .replace(/[<>]/g, "")
+  const guest = (params.get('invitado') || 'Nombre del invitado')
+    .replace(/[<>]/g, '')
     .trim()
     .slice(0, 80);
 
-  const parsedPeople = Number.parseInt(params.get("personas") || "1", 10);
-  const people = Number.isFinite(parsedPeople)
-    ? Math.max(1, Math.min(30, parsedPeople))
-    : 1;
+  document.getElementById('guestName').textContent =
+    guest || 'Nombre del invitado';
 
-  document.getElementById("guestName").textContent =
-    guest || "Nombre del invitado";
-
-  document.getElementById("validity").textContent =
-    "Esta invitación es válida para " + people +
-    (people === 1 ? " persona." : " personas.");
-
-  const el = document.getElementById("book");
-  const shell = document.querySelector(".book-shell");
-
-  function getPageWidth() {
-    // Dos páginas visibles: cada una ocupa aproximadamente
-    // la mitad del espacio disponible.
-    return Math.max(
-      150,
-      Math.min(420, Math.floor((shell.clientWidth - 14) / 2))
-    );
-  }
-
-  const pageWidth = getPageWidth();
-  const pageHeight = Math.round(pageWidth * 592 / 420);
+  const el = document.getElementById('book');
 
   const pageFlip = new St.PageFlip(el, {
     width: 420,
     height: 592,
-    size: "stretch",
-    minWidth: 150,
-    maxWidth: 420,
-    minHeight: 212,
-    maxHeight: 592,
+    size: 'stretch',
+    minWidth: 280,
+    maxWidth: 650,
+    minHeight: 395,
+    maxHeight: 920,
     showCover: true,
     drawShadow: true,
     flippingTime: 800,
-    usePortrait: false,
+    usePortrait: true,
     startPage: 0,
     autoSize: true,
-    maxShadowOpacity: 0.35,
-    mobileScrollSupport: false,
-    clickEventForward: true,
-    useMouseEvents: true
+    maxShadowOpacity: 0.25,
+    mobileScrollSupport: false
   });
 
-  pageFlip.loadFromHTML(document.querySelectorAll(".page"));
+  pageFlip.loadFromHTML(document.querySelectorAll('.page'));
 
-  const status = document.getElementById("status");
-  const prev = document.getElementById("prev");
-  const next = document.getElementById("next");
+  const status = document.getElementById('status');
 
   function update() {
-    const index = pageFlip.getCurrentPageIndex();
-    const total = 6;
-
-    if (index === 0) {
-      status.textContent = "Portada";
-    } else {
-      const first = index + 1;
-      const last = Math.min(index + 2, total);
-      status.textContent = first + "–" + last + " de " + total;
-    }
-
-    prev.disabled = index <= 0;
-    next.disabled = index >= total - 1;
+    const n = pageFlip.getCurrentPageIndex() + 1;
+    status.textContent = 'Página ' + n + ' de 6';
+    document.getElementById('prev').disabled = n === 1;
+    document.getElementById('next').disabled = n === 6;
   }
 
-  pageFlip.on("flip", update);
+  pageFlip.on('flip', update);
 
-  prev.addEventListener("click", function () {
+  document.getElementById('prev').addEventListener('click', function() {
     pageFlip.flipPrev();
   });
 
-  next.addEventListener("click", function () {
+  document.getElementById('next').addEventListener('click', function() {
     pageFlip.flipNext();
   });
 
   update();
-
-  // Recalcular el espacio cuando cambia la orientación.
-  window.addEventListener("resize", function () {
-    // La biblioteca adapta el libro al contenedor.
-    // Recargar la página aplica el nuevo tamaño si es necesario.
-  });
 })();
 </script>
-
 </body>
 </html>
