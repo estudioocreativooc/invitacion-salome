@@ -10,92 +10,161 @@
 :root {
   --ink: #252235;
   --paper: #f5ead4;
-  --accent: #78618a;
+  --accent: #243454;
 }
-* { box-sizing: border-box; }
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
-  background: radial-gradient(ellipse at top, #eee4ee, #d8d0dc 65%, #bcb1c4);
+  background:
+    radial-gradient(ellipse at top, #f0e7f0, #d8d0df 65%, #b7aabd);
   color: var(--ink);
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: Georgia, "Times New Roman", serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 18px;
+  padding: 18px 10px;
+  overflow-x: hidden;
 }
+
 .header {
   text-align: center;
-  margin: 0 0 14px;
+  margin: 0 0 22px;
 }
+
 .header .eyebrow {
   font-size: .72rem;
   letter-spacing: .22em;
   text-transform: uppercase;
   opacity: .78;
 }
+
 .header h1 {
   font-weight: normal;
   font-size: clamp(1.2rem, 4vw, 1.8rem);
   margin: 5px 0 0;
   font-style: italic;
 }
-#book {
-  margin: auto;
-  position: relative;
-  filter: drop-shadow(9px 12px 8px #30243b35);
+
+/* Escenario del libro */
+.book-stage {
+  width: min(100%, 850px);
+  margin: 0 auto;
+  padding: 0 12px 12px 0;
+  perspective: 1800px;
 }
 
-.page {
-  background: #f5ead4;
-  overflow: hidden;
+/* Cubierta exterior y sombra */
+.book-shell {
   position: relative;
-  border: 1px solid rgba(111, 91, 113, .22);
-}
-
-.page img {
   width: 100%;
-  height: 100%;
-  object-fit: fill;
-  display: block;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-.page:first-child {
+  padding: 7px;
+  border-radius: 3px 5px 5px 3px;
+  background: linear-gradient(
+    90deg,
+    #17233e 0%,
+    #263657 2%,
+    #e8dcc8 3%,
+    #fff8e9 4%,
+    #d7c7b5 96%,
+    #b8a68f 98%,
+    #1b2945 100%
+  );
   box-shadow:
-    inset 5px 0 0 rgba(39, 29, 56, .22),
-    inset -3px 0 0 rgba(255, 255, 255, .65);
+    0 3px 0 #17213a,
+    3px 6px 0 #253454,
+    7px 10px 0 #b8a9c4,
+    12px 17px 24px #30243b45;
+  transform-style: preserve-3d;
 }
-.page {
-  background: #f5ead4;
-  overflow: hidden;
+
+.book-shell::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: -8px;
+  width: 12px;
+  border-radius: 4px 0 0 4px;
+  background: linear-gradient(
+    90deg,
+    #17233e,
+    #354767 45%,
+    #192642
+  );
+  box-shadow:
+    inset 1px 0 2px #ffffff35,
+    inset -2px 0 3px #10192b80;
+}
+
+.book-shell::after {
+  content: "";
+  position: absolute;
+  z-index: 5;
+  top: 8px;
+  right: -5px;
+  bottom: 8px;
+  width: 5px;
+  border-radius: 0 2px 2px 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    #fff9ed 0,
+    #e3d4bf 2px,
+    #fff9ed 4px
+  );
+  pointer-events: none;
+}
+
+#book {
   position: relative;
+  margin: auto;
+  background: var(--paper);
+  box-shadow:
+    0 0 0 1px #b8a88f,
+    0 3px 8px #30243b20;
+  transform-style: preserve-3d;
 }
+
+/* Páginas interiores */
+.page {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid #d5c4a9;
+}
+
 .page img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: fill;
-  display: block;
   user-select: none;
   -webkit-user-drag: none;
 }
+
+/* Nombre y cantidad de invitados */
 .personalize {
   position: absolute;
   left: 10%;
   width: 80%;
   top: 24.3%;
-  height: 12%;
+  min-height: 12%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: rgba(245,234,212,.97);
-  padding: 2px 4px;
+  background: rgba(245, 234, 212, .97);
+  padding: 3px 4px;
   color: #242235;
 }
+
 .guest-name {
   font-variant: small-caps;
   font-weight: 600;
@@ -104,19 +173,24 @@ body {
   overflow-wrap: anywhere;
   max-width: 100%;
 }
+
 .validity {
   font-variant: small-caps;
   font-weight: 600;
   font-size: clamp(8px, 1.4vw, 14px);
-  line-height: 1.1;
-  margin-top: 8px;
+  line-height: 1.2;
+  margin-top: 5px;
 }
+
 .controls {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 18px;
-  margin-top: 16px;
+  gap: 12px;
+  margin-top: 20px;
+  width: 100%;
 }
+
 .controls button {
   border: 1px solid #6c5c77;
   background: #f7f0e5;
@@ -127,79 +201,159 @@ body {
   cursor: pointer;
   box-shadow: 0 3px 10px #30243b22;
 }
-.controls button:active { transform: translateY(1px); }
+
+.controls button:active {
+  transform: translateY(1px);
+}
+
+.controls button:disabled {
+  opacity: .4;
+  cursor: default;
+}
+
 #status {
-  font-size: .9rem;
-  min-width: 82px;
+  font-size: .85rem;
+  min-width: 90px;
   text-align: center;
 }
+
 .hint {
   font-size: .75rem;
   opacity: .75;
   text-align: center;
-  margin: 10px 0 0;
+  margin: 12px 0 0;
   max-width: 420px;
-  line-height: 1.4;
+  line-height: 1.5;
 }
-@media(max-width:480px) {
-  body { padding: 10px; }
-  .header { margin-bottom: 8px; }
-  .controls { margin-top: 10px; gap: 12px; }
-  .controls button { padding: 9px 13px; }
+
+/* Adaptación a pantallas pequeñas */
+@media (max-width: 600px) {
+  body {
+    padding: 14px 12px 20px;
+    justify-content: flex-start;
+  }
+
+  .header {
+    margin-bottom: 18px;
+  }
+
+  .book-stage {
+    width: 100%;
+    padding: 0 8px 10px 0;
+  }
+
+  .book-shell {
+    padding: 4px;
+  }
+
+  .controls {
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .controls button {
+    padding: 9px 12px;
+    font-size: .85rem;
+  }
+
+  #status {
+    min-width: 75px;
+    font-size: .75rem;
+  }
+
+  .hint {
+    padding: 0 8px;
+  }
 }
 </style>
 </head>
 
 <body>
+
 <header class="header">
   <div class="eyebrow">Una invitación muy especial</div>
   <h1>Mis quince años · Salomé</h1>
 </header>
 
-<div id="book">
-  <div class="page"><img src="page-1.webp" alt="Portada: Salomé, mis quince años"></div>
-  <div class="page"><img src="page-2.webp" alt="Ilustración de jardín y paisaje"></div>
-  <div class="page"><img src="page-3.webp" alt="Mensaje de invitación"></div>
-  <div class="page"><img src="page-4.webp" alt="Fecha, lugar y código de vestuario"></div>
-  <div class="page">
-    <img src="page-5.webp" alt="Confirmación y dedicatoria">
-    <div class="personalize">
-      <div id="guestName" class="guest-name">Nombre del invitado</div>
-      <div class="validity">Esta invitación es válida para una persona.</div>
+<div class="book-stage">
+  <div class="book-shell">
+    <div id="book">
+
+      <div class="page">
+        <img src="page-1.webp" alt="Portada: Salomé, mis quince años">
+      </div>
+
+      <div class="page">
+        <img src="page-2.webp" alt="Ilustración de jardín y paisaje">
+      </div>
+
+      <div class="page">
+        <img src="page-3.webp" alt="Mensaje de invitación">
+      </div>
+
+      <div class="page">
+        <img src="page-4.webp" alt="Fecha, lugar y código de vestuario">
+      </div>
+
+      <div class="page">
+        <img src="page-5.webp" alt="Confirmación y dedicatoria">
+        <div class="personalize">
+          <div id="guestName" class="guest-name">
+            Nombre del invitado
+          </div>
+          <div id="validity" class="validity">
+            Esta invitación es válida para una persona.
+          </div>
+        </div>
+      </div>
+
+      <div class="page">
+        <img src="page-6.webp" alt="Ilustración final de Salomé">
+      </div>
+
     </div>
   </div>
-  <div class="page"><img src="page-6.webp" alt="Ilustración final de Salomé"></div>
 </div>
 
 <div class="controls">
   <button id="prev" type="button">‹ Anterior</button>
-  <span id="status">Página 1 de 6</span>
+  <span id="status">Portada</span>
   <button id="next" type="button">Siguiente ›</button>
 </div>
 
 <p class="hint">
-  Toca una esquina o usa los botones para pasar las páginas.
-  Para personalizar el nombre, añade ?invitado=Nombre al final del enlace.
+  Toca las páginas o utiliza los botones para avanzar.
 </p>
 
 <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+
 <script>
-(function() {
+(function () {
   const params = new URLSearchParams(window.location.search);
-  const guest = (params.get('invitado') || 'Nombre del invitado')
-    .replace(/[<>]/g, '')
+
+  const guest = (params.get("invitado") || "Nombre del invitado")
+    .replace(/[<>]/g, "")
     .trim()
     .slice(0, 80);
 
-  document.getElementById('guestName').textContent =
-    guest || 'Nombre del invitado';
+  const rawPeople = Number.parseInt(params.get("personas") || "1", 10);
+  const people = Number.isFinite(rawPeople)
+    ? Math.max(1, Math.min(30, rawPeople))
+    : 1;
 
-  const el = document.getElementById('book');
+  document.getElementById("guestName").textContent =
+    guest || "Nombre del invitado";
+
+  document.getElementById("validity").textContent =
+    "Esta invitación es válida para " + people +
+    (people === 1 ? " persona." : " personas.");
+
+  const el = document.getElementById("book");
 
   const pageFlip = new St.PageFlip(el, {
     width: 420,
     height: 592,
-    size: 'stretch',
+    size: "stretch",
     minWidth: 280,
     maxWidth: 650,
     minHeight: 395,
@@ -210,33 +364,42 @@ body {
     usePortrait: true,
     startPage: 0,
     autoSize: true,
-    maxShadowOpacity: 0.25,
+    maxShadowOpacity: 0.35,
     mobileScrollSupport: false
   });
 
-  pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+  pageFlip.loadFromHTML(document.querySelectorAll(".page"));
 
-  const status = document.getElementById('status');
+  const status = document.getElementById("status");
+  const prev = document.getElementById("prev");
+  const next = document.getElementById("next");
 
   function update() {
-    const n = pageFlip.getCurrentPageIndex() + 1;
-    status.textContent = 'Página ' + n + ' de 6';
-    document.getElementById('prev').disabled = n === 1;
-    document.getElementById('next').disabled = n === 6;
+    const index = pageFlip.getCurrentPageIndex();
+
+    if (index === 0) {
+      status.textContent = "Portada";
+    } else {
+      status.textContent =
+        "Página " + (index + 1) + " de 6";
+    }
+
+    prev.disabled = index === 0;
+    next.disabled = index === 5;
   }
 
-  pageFlip.on('flip', update);
+  pageFlip.on("flip", update);
 
-  document.getElementById('prev').addEventListener('click', function() {
+  prev.addEventListener("click", function () {
     pageFlip.flipPrev();
   });
 
-  document.getElementById('next').addEventListener('click', function() {
+  next.addEventListener("click", function () {
     pageFlip.flipNext();
   });
 
   update();
 })();
 </script>
+
 </body>
-</html>
