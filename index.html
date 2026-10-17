@@ -1,306 +1,193 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mis quince años · Salomé</title>
-<meta name="description" content="Una invitación muy especial a los quince años de Salomé.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eaf0fa">
+  <title>Invitación | Los quince de Salomé</title>
 
-<style>
-:root {
-  --ink: #252235;
-  --paper: #f5ead4;
-  --accent: #243454;
-}
+  <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
 
-* {
-  box-sizing: border-box;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background:
-    radial-gradient(ellipse at top, #f0e7f0, #d8d0df 65%, #b7aabd);
-  color: var(--ink);
-  font-family: Georgia, "Times New Roman", serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 18px 10px;
-  overflow-x: hidden;
-}
+    html, body {
+      margin: 0;
+      min-height: 100%;
+    }
 
-.header {
-  text-align: center;
-  margin: 0 0 22px;
-}
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 10px;
+      background: #eaf0fa;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #242235;
+    }
 
-.header .eyebrow {
-  font-size: .72rem;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  opacity: .78;
-}
+    .heading {
+      text-align: center;
+      margin-bottom: 16px;
+    }
 
-.header h1 {
-  font-weight: normal;
-  font-size: clamp(1.2rem, 4vw, 1.8rem);
-  margin: 5px 0 0;
-  font-style: italic;
-}
+    .heading h1 {
+      font-size: clamp(21px, 4vw, 32px);
+      font-weight: normal;
+      margin: 0 0 6px;
+    }
 
-/* Escenario del libro */
-.book-stage {
-  width: min(100%, 850px);
-  margin: 0 auto;
-  padding: 0 12px 12px 0;
-  perspective: 1800px;
-}
+    .heading p {
+      font-size: 14px;
+      margin: 0;
+      color: #5b5a70;
+    }
 
-/* Cubierta exterior y sombra */
-.book-shell {
-  position: relative;
-  width: 100%;
-  padding: 7px;
-  border-radius: 3px 5px 5px 3px;
-  background: linear-gradient(
-    90deg,
-    #17233e 0%,
-    #263657 2%,
-    #e8dcc8 3%,
-    #fff8e9 4%,
-    #d7c7b5 96%,
-    #b8a68f 98%,
-    #1b2945 100%
-  );
-  box-shadow:
-    0 3px 0 #17213a,
-    3px 6px 0 #253454,
-    7px 10px 0 #b8a9c4,
-    12px 17px 24px #30243b45;
-  transform-style: preserve-3d;
-}
+    #book {
+      margin: 0 auto;
+    }
 
-.book-shell::before {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  bottom: 0;
-  left: -8px;
-  width: 12px;
-  border-radius: 4px 0 0 4px;
-  background: linear-gradient(
-    90deg,
-    #17233e,
-    #354767 45%,
-    #192642
-  );
-  box-shadow:
-    inset 1px 0 2px #ffffff35,
-    inset -2px 0 3px #10192b80;
-}
+    .page {
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+    }
 
-.book-shell::after {
-  content: "";
-  position: absolute;
-  z-index: 5;
-  top: 8px;
-  right: -5px;
-  bottom: 8px;
-  width: 5px;
-  border-radius: 0 2px 2px 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    #fff9ed 0,
-    #e3d4bf 2px,
-    #fff9ed 4px
-  );
-  pointer-events: none;
-}
+    .page img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-#book {
-  position: relative;
-  margin: auto;
-  background: var(--paper);
-  box-shadow:
-    0 0 0 1px #b8a88f,
-    0 3px 8px #30243b20;
-  transform-style: preserve-3d;
-}
+    /* Nombre personalizado de la quinta página */
+    .personalize {
+      position: absolute;
+      left: 10%;
+      width: 80%;
+      top: 29%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: transparent;
+      padding: 0;
+      color: #242235;
+      pointer-events: none;
+    }
 
-/* Páginas interiores */
-.page {
-  position: relative;
-  overflow: hidden;
-  background: var(--paper);
-  border: 1px solid #d5c4a9;
-}
+    .guest-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 600;
+      font-size: clamp(14px, 2.5vw, 23px);
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+      max-width: 100%;
+    }
 
-.page img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
-  user-select: none;
-  -webkit-user-drag: none;
-}
+    .validity {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 500;
+      font-size: clamp(9px, 1.5vw, 14px);
+      line-height: 1.2;
+      margin-top: 5px;
+    }
 
-/* Nombre y cantidad de invitados */
-.personalize {
-  position: absolute;
-  left: 10%;
-  width: 80%;
-  top: 24.3%;
-  min-height: 12%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: rgba(245, 234, 212, .97);
-  padding: 3px 4px;
-  color: #242235;
-}
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 18px;
+    }
 
-.guest-name {
-  font-variant: small-caps;
-  font-weight: 600;
-  font-size: clamp(12px, 2.3vw, 22px);
-  line-height: 1.15;
-  overflow-wrap: anywhere;
-  max-width: 100%;
-}
+    .controls button {
+      border: 1px solid #c3ccdf;
+      border-radius: 24px;
+      background: #fff;
+      color: #242235;
+      font-family: Georgia, serif;
+      font-size: 15px;
+      padding: 10px 18px;
+      cursor: pointer;
+    }
 
-.validity {
-  font-variant: small-caps;
-  font-weight: 600;
-  font-size: clamp(8px, 1.4vw, 14px);
-  line-height: 1.2;
-  margin-top: 5px;
-}
+    .controls button:active {
+      background: #dce5f5;
+    }
 
-.controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin-top: 20px;
-  width: 100%;
-}
+    #pageStatus {
+      min-width: 72px;
+      text-align: center;
+      font-size: 13px;
+      color: #5b5a70;
+    }
 
-.controls button {
-  border: 1px solid #6c5c77;
-  background: #f7f0e5;
-  color: #2b2436;
-  border-radius: 999px;
-  padding: 10px 17px;
-  font: inherit;
-  cursor: pointer;
-  box-shadow: 0 3px 10px #30243b22;
-}
+    .hint {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #68677b;
+      text-align: center;
+    }
 
-.controls button:active {
-  transform: translateY(1px);
-}
+    @media (max-width: 480px) {
+      body {
+        padding: 12px 6px;
+      }
 
-.controls button:disabled {
-  opacity: .4;
-  cursor: default;
-}
+      .heading {
+        margin-bottom: 12px;
+      }
 
-#status {
-  font-size: .85rem;
-  min-width: 90px;
-  text-align: center;
-}
+      .controls {
+        margin-top: 14px;
+        gap: 8px;
+      }
 
-.hint {
-  font-size: .75rem;
-  opacity: .75;
-  text-align: center;
-  margin: 12px 0 0;
-  max-width: 420px;
-  line-height: 1.5;
-}
-
-/* Adaptación a pantallas pequeñas */
-@media (max-width: 600px) {
-  body {
-    padding: 14px 12px 20px;
-    justify-content: flex-start;
-  }
-
-  .header {
-    margin-bottom: 18px;
-  }
-
-  .book-stage {
-    width: 100%;
-    padding: 0 8px 10px 0;
-  }
-
-  .book-shell {
-    padding: 4px;
-  }
-
-  .controls {
-    gap: 8px;
-    margin-top: 16px;
-  }
-
-  .controls button {
-    padding: 9px 12px;
-    font-size: .85rem;
-  }
-
-  #status {
-    min-width: 75px;
-    font-size: .75rem;
-  }
-
-  .hint {
-    padding: 0 8px;
-  }
-}
-</style>
+      .controls button {
+        padding: 9px 13px;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <header class="heading">
+    <h1>Los quince de Salomé</h1>
+    <p>Una invitación especial para ti</p>
+  </header>
 
-<header class="header">
-  <div class="eyebrow">Una invitación muy especial</div>
-  <h1>Mis quince años · Salomé</h1>
-</header>
-
-<div class="book-stage">
-  <div class="book-shell">
+  <main>
     <div id="book">
-
       <div class="page">
-        <img src="page-1.webp" alt="Portada: Salomé, mis quince años">
+        <img src="page-1.webp" alt="Portada de la invitación">
       </div>
 
       <div class="page">
-        <img src="page-2.webp" alt="Ilustración de jardín y paisaje">
+        <img src="page-2.webp" alt="Invitación de Salomé">
       </div>
 
       <div class="page">
-        <img src="page-3.webp" alt="Mensaje de invitación">
+        <img src="page-3.webp" alt="Detalles de la celebración">
       </div>
 
       <div class="page">
-        <img src="page-4.webp" alt="Fecha, lugar y código de vestuario">
+        <img src="page-4.webp" alt="Información de la celebración">
       </div>
 
       <div class="page">
-        <img src="page-5.webp" alt="Confirmación y dedicatoria">
+        <img src="page-5.webp" alt="Invitación personalizada">
+
         <div class="personalize">
           <div id="guestName" class="guest-name">
             Nombre del invitado
           </div>
+
           <div id="validity" class="validity">
             Esta invitación es válida para una persona.
           </div>
@@ -308,98 +195,89 @@ body {
       </div>
 
       <div class="page">
-        <img src="page-6.webp" alt="Ilustración final de Salomé">
+        <img src="page-6.webp" alt="Cierre de la invitación">
       </div>
-
     </div>
-  </div>
-</div>
 
-<div class="controls">
-  <button id="prev" type="button">‹ Anterior</button>
-  <span id="status">Portada</span>
-  <button id="next" type="button">Siguiente ›</button>
-</div>
+    <div class="controls">
+      <button type="button" id="prevButton">← Anterior</button>
+      <span id="pageStatus">Página 1 de 6</span>
+      <button type="button" id="nextButton">Siguiente →</button>
+    </div>
 
-<p class="hint">
-  Toca las páginas o utiliza los botones para avanzar.
-</p>
+    <p class="hint">También puedes pasar las páginas tocando sus bordes.</p>
+  </main>
 
-<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+  <script>
+    // Personalización mediante la dirección web
+    const params = new URLSearchParams(window.location.search);
 
-<script>
-(function () {
-  const params = new URLSearchParams(window.location.search);
+    const guest = (params.get("invitado") || "Nombre del invitado")
+      .replace(/[<>]/g, "")
+      .trim()
+      .slice(0, 80);
 
-  const guest = (params.get("invitado") || "Nombre del invitado")
-    .replace(/[<>]/g, "")
-    .trim()
-    .slice(0, 80);
+    const rawPeople = Number.parseInt(
+      params.get("personas") || "1",
+      10
+    );
 
-  const rawPeople = Number.parseInt(params.get("personas") || "1", 10);
-  const people = Number.isFinite(rawPeople)
-    ? Math.max(1, Math.min(30, rawPeople))
-    : 1;
+    const people = Number.isFinite(rawPeople)
+      ? Math.max(1, Math.min(30, rawPeople))
+      : 1;
 
-  document.getElementById("guestName").textContent =
-    guest || "Nombre del invitado";
+    document.getElementById("guestName").textContent =
+      guest || "Nombre del invitado";
 
-  document.getElementById("validity").textContent =
-    "Esta invitación es válida para " + people +
-    (people === 1 ? " persona." : " personas.");
+    document.getElementById("validity").textContent =
+      "Esta invitación es válida para " +
+      people +
+      (people === 1 ? " persona." : " personas.");
 
-  const el = document.getElementById("book");
+    // Configuración del libro
+    const bookElement = document.getElementById("book");
+    const pageStatus = document.getElementById("pageStatus");
 
-  const pageFlip = new St.PageFlip(el, {
-    width: 420,
-    height: 592,
-    size: "stretch",
-    minWidth: 280,
-    maxWidth: 650,
-    minHeight: 395,
-    maxHeight: 920,
-    showCover: true,
-    drawShadow: true,
-    flippingTime: 800,
-    usePortrait: true,
-    startPage: 0,
-    autoSize: true,
-    maxShadowOpacity: 0.35,
-    mobileScrollSupport: false
-  });
+    const pageFlip = new St.PageFlip(bookElement, {
+      width: 400,
+      height: 600,
+      size: "stretch",
+      minWidth: 280,
+      maxWidth: 600,
+      minHeight: 420,
+      maxHeight: 900,
+      showCover: true,
+      usePortrait: true,
+      drawShadow: true,
+      flippingTime: 700,
+      mobileScrollSupport: false,
+      maxShadowOpacity: 0.25
+    });
 
-  pageFlip.loadFromHTML(document.querySelectorAll(".page"));
+    pageFlip.loadFromHTML(
+      document.querySelectorAll("#book .page")
+    );
 
-  const status = document.getElementById("status");
-  const prev = document.getElementById("prev");
-  const next = document.getElementById("next");
-
-  function update() {
-    const index = pageFlip.getCurrentPageIndex();
-
-    if (index === 0) {
-      status.textContent = "Portada";
-    } else {
-      status.textContent =
-        "Página " + (index + 1) + " de 6";
+    function updateStatus() {
+      const current = pageFlip.getCurrentPageIndex() + 1;
+      pageStatus.textContent = "Página " + current + " de 6";
     }
 
-    prev.disabled = index === 0;
-    next.disabled = index === 5;
-  }
+    pageFlip.on("flip", updateStatus);
 
-  pageFlip.on("flip", update);
+    document.getElementById("prevButton").addEventListener(
+      "click",
+      () => pageFlip.flipPrev()
+    );
 
-  prev.addEventListener("click", function () {
-    pageFlip.flipPrev();
-  });
+    document.getElementById("nextButton").addEventListener(
+      "click",
+      () => pageFlip.flipNext()
+    );
 
-  next.addEventListener("click", function () {
-    pageFlip.flipNext();
-  });
+    window.addEventListener("resize", updateStatus);
 
-  update();
-})();
-</script>
-
+    updateStatus();
+  </script>
 </body>
+</html>
