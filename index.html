@@ -41,6 +41,7 @@ body {
   overflow-x: hidden;
 }
 
+/* Encabezado */
 .header {
   text-align: center;
   margin: 0 0 24px;
@@ -131,7 +132,7 @@ body {
   pointer-events: none;
 }
 
-/* PageFlip controla el tamaño y la posición del libro */
+/* Libro */
 #book {
   position: relative;
   margin: 0 auto;
@@ -157,7 +158,6 @@ body {
   -webkit-user-drag: none;
   pointer-events: none;
 }
-
 
 /* Nombre y cantidad de invitados */
 .personalize {
@@ -246,6 +246,7 @@ body {
   line-height: 1.5;
 }
 
+/* Adaptación a celulares */
 @media (max-width: 600px) {
   body {
     padding: 18px 12px 24px;
@@ -298,22 +299,24 @@ body {
   <div class="book-shell">
     <div id="book">
 
+      <!-- Página 1: portada -->
       <div class="page">
         <img src="page-1.webp" alt="Portada: Salomé, mis quince años">
       </div>
 
-      <div class="page">
-        <img src="page-2.webp" alt="Ilustración de jardín y paisaje">
-      </div>
+      <!-- Se eliminó la antigua página 2 -->
 
+      <!-- Página 2: mensaje de invitación -->
       <div class="page">
         <img src="page-3.webp" alt="Mensaje de invitación">
       </div>
 
+      <!-- Página 3: fecha, lugar y vestuario -->
       <div class="page">
         <img src="page-4.webp" alt="Fecha, lugar y código de vestuario">
       </div>
 
+      <!-- Página 4: confirmación y dedicatoria -->
       <div class="page">
         <img src="page-5.webp" alt="Confirmación y dedicatoria">
 
@@ -327,6 +330,7 @@ body {
         </div>
       </div>
 
+      <!-- Página 5: ilustración final -->
       <div class="page">
         <img src="page-6.webp" alt="Ilustración final de Salomé">
       </div>
@@ -368,7 +372,9 @@ body {
   const status = document.getElementById("status");
   const prevButton = document.getElementById("prev");
   const nextButton = document.getElementById("next");
-  const totalPages = 6;
+
+  /* Ahora hay cinco páginas */
+  const totalPages = 5;
 
   function updateControls(pageIndex) {
     prevButton.disabled = pageIndex <= 0;
