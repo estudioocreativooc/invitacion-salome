@@ -151,20 +151,29 @@ body {
 /* Nombre y cantidad de invitados */
 .personalize {
   position: absolute;
-  left: 10%;
+
+  /* CENTRADO HORIZONTAL */
+  left: 50%;
+  transform: translateX(-50%);
   width: 80%;
-  top: 29%;
+
+  /* NOMBRE MÁS ARRIBA */
+  top: 20%;
+
   min-height: 12%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  /* SE CONSERVA LA TRANSPARENCIA */
   background: transparent;
   padding: 3px 4px;
   color: #242235;
   pointer-events: none;
 }
+
 .guest-name {
   font-variant: small-caps;
   font-weight: 600;
@@ -172,6 +181,7 @@ body {
   line-height: 1.15;
   overflow-wrap: anywhere;
   max-width: 100%;
+  text-align: center;
 }
 
 .validity {
@@ -180,6 +190,7 @@ body {
   font-size: clamp(8px, 1.4vw, 14px);
   line-height: 1.2;
   margin-top: 5px;
+  text-align: center;
 }
 
 .controls {
@@ -297,10 +308,12 @@ body {
 
       <div class="page">
         <img src="page-5.webp" alt="Confirmación y dedicatoria">
+
         <div class="personalize">
           <div id="guestName" class="guest-name">
             Nombre del invitado
           </div>
+
           <div id="validity" class="validity">
             Esta invitación es válida para una persona.
           </div>
@@ -329,77 +342,4 @@ body {
 
 <script>
 (function () {
-  const params = new URLSearchParams(window.location.search);
-
-  const guest = (params.get("invitado") || "Nombre del invitado")
-    .replace(/[<>]/g, "")
-    .trim()
-    .slice(0, 80);
-
-  const rawPeople = Number.parseInt(params.get("personas") || "1", 10);
-  const people = Number.isFinite(rawPeople)
-    ? Math.max(1, Math.min(30, rawPeople))
-    : 1;
-
-  document.getElementById("guestName").textContent =
-    guest || "Nombre del invitado";
-
-  document.getElementById("validity").textContent =
-    "Esta invitación es válida para " + people +
-    (people === 1 ? " persona." : " personas.");
-
-  const el = document.getElementById("book");
-
-  const pageFlip = new St.PageFlip(el, {
-    width: 420,
-    height: 592,
-    size: "stretch",
-    minWidth: 280,
-    maxWidth: 650,
-    minHeight: 395,
-    maxHeight: 920,
-    showCover: true,
-    drawShadow: true,
-    flippingTime: 800,
-    usePortrait: true,
-    startPage: 0,
-    autoSize: true,
-    maxShadowOpacity: 0.35,
-    mobileScrollSupport: false
-  });
-
-  pageFlip.loadFromHTML(document.querySelectorAll(".page"));
-
-  const status = document.getElementById("status");
-  const prev = document.getElementById("prev");
-  const next = document.getElementById("next");
-
-  function update() {
-    const index = pageFlip.getCurrentPageIndex();
-
-    if (index === 0) {
-      status.textContent = "Portada";
-    } else {
-      status.textContent =
-        "Página " + (index + 1) + " de 6";
-    }
-
-    prev.disabled = index === 0;
-    next.disabled = index === 5;
-  }
-
-  pageFlip.on("flip", update);
-
-  prev.addEventListener("click", function () {
-    pageFlip.flipPrev();
-  });
-
-  next.addEventListener("click", function () {
-    pageFlip.flipNext();
-  });
-
-  update();
-})();
-</script>
-
-</body>
+  const params = new
