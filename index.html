@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="es">
 <head>
@@ -10,44 +11,52 @@
 :root {
   --ink: #252235;
   --paper: #f5ead4;
-  --accent: #243454;
+  --blue: #243454;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  min-height: 100%;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(ellipse at top, #f0e7f0, #d8d0df 65%, #b7aabd);
+  background: radial-gradient(
+    ellipse at top,
+    #f0e7f0,
+    #d8d0df 65%,
+    #b7aabd
+  );
   color: var(--ink);
   font-family: Georgia, "Times New Roman", serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 18px 10px;
+  padding: 20px 12px;
   overflow-x: hidden;
 }
 
 .header {
   text-align: center;
-  margin: 0 0 22px;
+  margin: 0 0 24px;
 }
 
-.header .eyebrow {
-  font-size: .72rem;
-  letter-spacing: .22em;
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  opacity: .78;
+  opacity: 0.78;
 }
 
 .header h1 {
   font-weight: normal;
   font-size: clamp(1.2rem, 4vw, 1.8rem);
-  margin: 5px 0 0;
+  margin: 6px 0 0;
   font-style: italic;
 }
 
@@ -55,11 +64,11 @@ body {
 .book-stage {
   width: min(100%, 850px);
   margin: 0 auto;
-  padding: 0 12px 12px 0;
+  padding: 0 12px 15px 8px;
   perspective: 1800px;
 }
 
-/* Cubierta exterior y sombra */
+/* Cubierta exterior */
 .book-shell {
   position: relative;
   width: 100%;
@@ -101,6 +110,7 @@ body {
   box-shadow:
     inset 1px 0 2px #ffffff35,
     inset -2px 0 3px #10192b80;
+  pointer-events: none;
 }
 
 .book-shell::after {
@@ -121,17 +131,16 @@ body {
   pointer-events: none;
 }
 
+/* PageFlip controla el tamaño y la posición del libro */
 #book {
   position: relative;
-  margin: auto;
+  margin: 0 auto;
   background: var(--paper);
-  box-shadow:
-    0 0 0 1px #b8a88f,
-    0 3px 8px #30243b20;
+  box-shadow: 0 0 0 1px #b8a88f;
   transform-style: preserve-3d;
 }
 
-/* Páginas interiores */
+/* Páginas */
 .page {
   position: relative;
   overflow: hidden;
@@ -146,28 +155,23 @@ body {
   object-fit: fill;
   user-select: none;
   -webkit-user-drag: none;
+  pointer-events: none;
 }
 
 /* Nombre y cantidad de invitados */
 .personalize {
   position: absolute;
-
-  /* CENTRADO HORIZONTAL */
+  z-index: 2;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
-
-  /* NOMBRE MÁS ARRIBA */
-  top: 20%;
-
   min-height: 12%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-
-  /* SE CONSERVA LA TRANSPARENCIA */
   background: transparent;
   padding: 3px 4px;
   color: #242235;
@@ -193,12 +197,13 @@ body {
   text-align: center;
 }
 
+/* Controles */
 .controls {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
-  margin-top: 20px;
+  margin-top: 22px;
   width: 100%;
 }
 
@@ -218,39 +223,38 @@ body {
 }
 
 .controls button:disabled {
-  opacity: .4;
+  opacity: 0.4;
   cursor: default;
 }
 
 #status {
-  font-size: .85rem;
+  font-size: 0.85rem;
   min-width: 90px;
   text-align: center;
 }
 
 .hint {
-  font-size: .75rem;
-  opacity: .75;
+  font-size: 0.75rem;
+  opacity: 0.75;
   text-align: center;
   margin: 12px 0 0;
   max-width: 420px;
   line-height: 1.5;
 }
 
-/* Adaptación a pantallas pequeñas */
 @media (max-width: 600px) {
   body {
-    padding: 14px 12px 20px;
+    padding: 18px 12px 24px;
     justify-content: flex-start;
   }
 
   .header {
-    margin-bottom: 18px;
+    margin-bottom: 20px;
   }
 
   .book-stage {
     width: 100%;
-    padding: 0 8px 10px 0;
+    padding: 0 8px 12px 5px;
   }
 
   .book-shell {
@@ -259,17 +263,17 @@ body {
 
   .controls {
     gap: 8px;
-    margin-top: 16px;
+    margin-top: 18px;
   }
 
   .controls button {
     padding: 9px 12px;
-    font-size: .85rem;
+    font-size: 0.85rem;
   }
 
   #status {
     min-width: 75px;
-    font-size: .75rem;
+    font-size: 0.75rem;
   }
 
   .hint {
@@ -286,7 +290,7 @@ body {
   <h1>Mis quince años · Salomé</h1>
 </header>
 
-<div class="book-stage">
+<main class="book-stage">
   <div class="book-shell">
     <div id="book">
 
@@ -313,7 +317,6 @@ body {
           <div id="guestName" class="guest-name">
             Nombre del invitado
           </div>
-
           <div id="validity" class="validity">
             Esta invitación es válida para una persona.
           </div>
@@ -326,11 +329,11 @@ body {
 
     </div>
   </div>
-</div>
+</main>
 
 <div class="controls">
-  <button id="prev" type="button">‹ Anterior</button>
-  <span id="status">Portada</span>
+  <button id="prev" type="button" disabled>‹ Anterior</button>
+  <span id="status" aria-live="polite">Portada</span>
   <button id="next" type="button">Siguiente ›</button>
 </div>
 
@@ -342,4 +345,100 @@ body {
 
 <script>
 (function () {
-  const params = new
+  "use strict";
+
+  /* Personalización mediante la dirección web */
+  const params = new URLSearchParams(window.location.search);
+  const guestName = params.get("invitado") || "Nombre del invitado";
+  const requestedPeople = parseInt(params.get("personas") || "1", 10);
+  const people = Number.isFinite(requestedPeople)
+    ? Math.max(1, requestedPeople)
+    : 1;
+
+  document.getElementById("guestName").textContent = guestName;
+  document.getElementById("validity").textContent =
+    "Esta invitación es válida para " + people +
+    (people === 1 ? " persona." : " personas.");
+
+  const bookElement = document.getElementById("book");
+  const status = document.getElementById("status");
+  const prevButton = document.getElementById("prev");
+  const nextButton = document.getElementById("next");
+  const totalPages = 6;
+
+  function updateControls(pageIndex) {
+    prevButton.disabled = pageIndex <= 0;
+    nextButton.disabled = pageIndex >= totalPages - 1;
+
+    if (pageIndex === 0) {
+      status.textContent = "Portada";
+    } else if (pageIndex >= totalPages - 1) {
+      status.textContent = "Final";
+    } else {
+      status.textContent = "Página " + (pageIndex + 1) +
+        " de " + totalPages;
+    }
+  }
+
+  function showError(message) {
+    status.textContent = message;
+    prevButton.disabled = true;
+    nextButton.disabled = true;
+    console.error(message);
+  }
+
+  function initializeBook() {
+    if (!window.St || !window.St.PageFlip) {
+      showError("No se pudo cargar el libro");
+      return;
+    }
+
+    const pages = document.querySelectorAll("#book .page");
+
+    if (pages.length !== totalPages) {
+      showError("Faltan páginas de la invitación");
+      return;
+    }
+
+    const pageFlip = new St.PageFlip(bookElement, {
+      width: 400,
+      height: 560,
+      size: "stretch",
+      minWidth: 280,
+      maxWidth: 850,
+      minHeight: 392,
+      maxHeight: 1190,
+      showCover: true,
+      usePortrait: true,
+      startPage: 0,
+      drawShadow: true,
+      flippingTime: 800,
+      useMouseEvents: true,
+      mobileScrollSupport: false,
+      maxShadowOpacity: 0.35,
+      autoSize: true
+    });
+
+    pageFlip.loadFromHTML(pages);
+
+    pageFlip.on("flip", function (event) {
+      updateControls(event.data);
+    });
+
+    prevButton.addEventListener("click", function () {
+      pageFlip.flipPrev();
+    });
+
+    nextButton.addEventListener("click", function () {
+      pageFlip.flipNext();
+    });
+
+    updateControls(0);
+  }
+
+  initializeBook();
+})();
+</script>
+
+</body>
+</html>
